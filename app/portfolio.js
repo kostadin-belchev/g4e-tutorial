@@ -16,11 +16,17 @@ let logger;
 // TUTOR_TODO Chapter 1.2 - Call the Glue factory function and pass in the `glueConfig` object, which is registered by `tick42-glue-config.js`
 // When the promise is resolved, attach the received glue instance to `window` so it can be globally accessible
 // Then add all of the following code, leave the code under TUTOR_TODO Chapter 8 commented as you will need it later on:
-
-// instrumentService();
-// onInitializeApp();
-// initInstrumentSearch();
-// trackTheme();
+Glue(glueConfig)
+    .then(glue => {
+        window.glue = glue;
+        instrumentService();
+        onInitializeApp();
+        initInstrumentSearch();
+        trackTheme();
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
 
 // // TUTOR_TODO Chapter 8
 // // const glue4OfficeOptions = {
@@ -95,17 +101,41 @@ const trackTheme = () => {
 };
 
 const setUpAppContent = () => {
-    registerAgmMethod();
-
+    const party = glue.windows.my().context.party;
     // TUTOR_TODO chapter 4.3 - Check whether the current window context contains the attribute 'party'
     // if doesn't, then go ahead and register the AGM method, otherwise the title of the tab and the window, using the preferredName from the party object
     // and call loadPortfolio() passing in the pId from the party object
+    if (party) {
+        glue.windows.my().setTitle(party.preferredName);
+        document
+            .getElementById(party.preferredName)
+            .textContent(party.preferredName);
+        loadPortfolio();
+    } else {
+        registerAgmMethod(party.pId);
+    }
     // assign the received party object to partyObj, because we will need it later on.
+    partyObj = party;
 };
 
 const registerAgmMethod = () => {
     // TUTOR_TODO Chapter 11 - register the AGM method only if you are not in activity, otherwise listen for activity context changes and call loadPortfolio
     // TUTOR_TODO Chapter 2.1 - register an AGM method 'SetParty', which accepts a composite argument 'party' with optional strings pId and ucn
+    glue.agm.register(
+        {
+            name: "SetParty", // required - method name
+            display_name: "Set Party",
+            description:
+                "Switches the application window to work with the specified party",
+            accepts: "Composite: { String? pId, String? salesForceId } party", // optional - parameters signature
+            returns: "int answer" // optional - result signature
+        },
+        args => {
+            // required - handler function
+            const partyObj = args.party;
+            loadPortfolio(partyObj.pId);
+        }
+    );
     // in the callback - call loadPortfolio passing the pId received as a parameter.
     // assign the received party object to partyObj, because we will need it later on.
 };
@@ -198,10 +228,22 @@ const subscribeSymbolPrices = () => {
 const unsubscribeSymbolPrices = () => {
     // TUTOR_TODO Chapter 3 - Traverse the saved subscriptions and close each one.
     // We need to do this, because when the portfolio changes, we need to clear the existing subscriptions and subscribe to the new symbol's stream
+    subscriptions.forEach(subscription => subscription.close());
 };
 
 const subscribeBySymbol = (symbol, callback) => {
     // TUTOR_TODO Chapter 3 - Subscribe to a stream called 'T42.MarketStream.Subscribe'
+    glue.agm.subscribe(
+        "T42.MarketStream.Subscribe",
+        {
+            arguments: { Symbol: symbol }
+        },
+        subscription => {
+            subscriptions.push(subscription);
+            subscription.onData(streamData => callback(streamData));
+        },
+        error => console.error("Subscription failed: " + error)
+    );
     // as a second parameter pass an options object with an `arguments` property, which has a property 'Symbol' and assign to it the symbol variable passed to this function
     // When the promise is resolved save the created subscription so that you can later close it and subscribe to new streams (when the portfolio changes)
     // Finally subscribe to the created subscription's onData event and invoke the callback passed to this function with the received streamData
@@ -222,11 +264,6 @@ const addRow = (table, rowData, emptyFlag) => {
         }
 
         // TUTOR_TODO Chapter 2.3 - Discover all registered methods with objectType 'Instrument'
-        console.log(
-            "TCL: row.onclick -> glue.agm.methods()",
-            glue.agm.methods()
-        );
-        console.log("TCL: row.onclick -> method");
         const partyMethods = glue.agm
             .methods()
             .filter(
@@ -340,7 +377,6 @@ const invokeAgMethodByName = (methodName, params) => {
 };
 
 const displayResult = result => {
-    console.log("TCL: displayResult");
     removeChildNodes("resultInstrumentTbl");
 
     const resultInstrumentTbl = document.getElementById("resultInstrumentTbl");
@@ -451,6 +487,11 @@ const setUpWindowEventsListeners = () => {
     // TUTOR_TODO Chapter 4.2 - subscribe to the onWindowRemoved event and implement the handler
     // compare the closed window's id with the client window id you were passed on window creation
     // if they match - glue.windows.my().close();
+    glue.windows.onWindowRemoved(closedWindow => {
+        if (closedWindow.id === glue.windows.my().context.parentWindowId) {
+            glue.windows.my().close();
+        }
+    });
 };
 
 const setUpTabControls = () => {
