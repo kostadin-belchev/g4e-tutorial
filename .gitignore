@@ -5,5 +5,5 @@ build/
 *.swp
 .DS_Store
 esdoc/
-# app/*.html
-# app/*.js
+app/*.html
+app/*.js

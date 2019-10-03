@@ -1,6 +1,6 @@
-const RestServerUrl = "http://localhost:22910/";
-const RestServerEndpoint = "GetDemoPortfolio";
-const StreamName = "T42.MarketStream.Subscribe";
+const RestServerUrl = 'http://localhost:22910/';
+const RestServerEndpoint = 'GetDemoPortfolio';
+const StreamName = 'T42.MarketStream.Subscribe';
 
 let detachedTabs = [];
 let subscriptions = [];
@@ -26,42 +26,45 @@ let logger;
 // // const glue4OfficeOptions = {
 // //     glue: glue,
 // //     outlook: true,
-// //        // TUTOR_TODO Chapter 9
+// //        // TUTOR_TODO Chapter 9 
 // //        // excel: true
 // // };
 
-// // TUTOR_TODO Chapter 8 - Initiate Glue4Office with the supplied glue4OfficeOptions then assign the returned g4o object to the window in order to be globally accessible
+// // TUTOR_TODO Chapter 8 - Initiate Glue4Office with the supplied glue4OfficeOptions then assign the returned g4o object to the window in order to be globally accessible 
 
 // Don't forget to catch any errors.
 
+
 const instrumentService = () => {
+
     // TUTOR_TODO Chapter 12 - create sub-logger
+
     // TUTOR_TODO Chapter 12 - create a metrics instance, a sub-system and set the state to GREEN
+
     // TUTOR_TODO Chapter 12 - create an error count metric
+
     // TUTOR_TODO Chapter 12 - create a composite error metric
+
     // TUTOR_TODO Chapter 12 - create a TimeSpan metric
 };
 
 const onInitializeApp = () => {
     if (glue.agm) {
-        glue.agm.register(
-            {
-                name: "Alert symbol",
-                objectTypes: ["Instrument"]
+        glue.agm.register({
+                name: 'Alert symbol',
+                objectTypes: ['Instrument'],
             },
-            args => {
+            (args) => {
                 alert(args.instrument.ric);
-            }
-        );
-        glue.agm.register(
-            {
-                name: "Alert bpod",
-                objectTypes: ["Instrument"]
+            });
+        glue.agm.register({
+                name: 'Alert bpod',
+                objectTypes: ['Instrument'],
             },
-            args => {
+            (args) => {
                 alert(args.instrument.bpod);
-            }
-        );
+            });
+
     }
 
     setUpAppContent();
@@ -72,8 +75,11 @@ const onInitializeApp = () => {
 };
 
 const initInstrumentSearch = () => {
+
     // TUTOR_TODO Chapter 6
+
     // Create a search client using the supplied options
+
     // const gssOptions = {
     //     agm: glue.agm,
     //     defaultQueryLimit: 500,
@@ -82,19 +88,23 @@ const initInstrumentSearch = () => {
     //     debugGss: false,
     //     debug: false
     // };
+
     // Use the created search client to create a query for 'Instrument'
+
     // subscribe to the created query's onData event and call displayResult() passing in the received entities
+
 };
 
 const trackTheme = () => {
-    const setTheme = name => {
-        $("#themeLink").attr("href", "../lib/themes/css/" + name);
-    };
+    const setTheme = (name) => {
+        $('#themeLink').attr('href', '../lib/themes/css/' + name);
+    }
 
     // TUTOR_TODO 10 - subscribe for context changes and call setTheme with either 'bootstrap-dark.min.css' or 'bootstrap.min.css'
 };
 
 const setUpAppContent = () => {
+
     registerAgmMethod();
 
     // TUTOR_TODO chapter 4.3 - Check whether the current window context contains the attribute 'party'
@@ -104,54 +114,58 @@ const setUpAppContent = () => {
 };
 
 const registerAgmMethod = () => {
+
     // TUTOR_TODO Chapter 11 - register the AGM method only if you are not in activity, otherwise listen for activity context changes and call loadPortfolio
+
     // TUTOR_TODO Chapter 2.1 - register an AGM method 'SetParty', which accepts a composite argument 'party' with optional strings pId and ucn
     // in the callback - call loadPortfolio passing the pId received as a parameter.
     // assign the received party object to partyObj, because we will need it later on.
+
 };
 
-const loadPortfolio = portf => {
+const loadPortfolio = (portf) => {
     const serviceUrl = RestServerUrl + RestServerEndpoint;
 
-    const serviceRequest = "xpath=//Portfolios/Portfolio[id=" + portf + "]";
+    const serviceRequest = 'xpath=//Portfolios/Portfolio[id=' + portf + ']';
 
     const requestStart = Date.now();
 
     // TUTOR_TODO Chapter 12 - start the latency metric
 
     const ajaxOptions = {
-        method: "GET",
+        method: 'GET',
         url: serviceUrl,
         data: serviceRequest
     };
 
     $.ajax(ajaxOptions)
-        .done(portfolio => {
+        .done((portfolio) => {
             // TUTOR_TODO Chapter 12 - stop the latency metric
 
             const elapsedMillis = Date.now() - requestStart;
 
             if (elapsedMillis >= 1000) {
-                const message = "Service at " + serviceUrl + " is lagging";
+                const message = 'Service at ' + serviceUrl + ' is lagging';
 
                 // TUTOR_TODO Chapter 12 - set system state to AMBER and pass the created message
+
+
             } else {
+
                 // TUTOR_TODO Chapter 12 - set the system state to GREEN
+
             }
 
             let parsedPortfolio;
-            if (typeof portfolio !== "undefined") {
+            if (typeof portfolio !== 'undefined') {
                 parsedPortfolio = JSON.parse(portfolio);
             }
 
-            const logMessage = {
-                portfolioId: portf,
-                portfolio: parsedPortfolio
-            };
+            const logMessage = { portfolioId: portf, portfolio: parsedPortfolio };
             // TUTOR_TODO Chapter 12 - log to the console using the logger and the provided logMessage
 
-            if (!parsedPortfolio.Portfolios.hasOwnProperty("Portfolio")) {
-                console.warn("The client has no portfolio");
+            if (!parsedPortfolio.Portfolios.hasOwnProperty('Portfolio')) {
+                console.warn('The client has no portfolio')
                 return;
             }
 
@@ -164,88 +178,75 @@ const loadPortfolio = portf => {
 
             // TUTOR_TODO Chapter 12 - increment the error count
 
-            const errorMessage =
-                "Service at " +
-                serviceUrl +
-                " failed at " +
-                serviceRequest +
-                " with " +
-                textStatus;
+            const errorMessage = 'Service at ' + serviceUrl + ' failed at ' + serviceRequest + ' with ' + textStatus;
 
             const errorOptions = {
                 clientId: portf,
                 message: errorMessage,
                 time: new Date(),
-                stackTrace: ""
+                stackTrace: ''
             };
 
             // TUTOR_TODO Chapter 12 - capture the error with the composite metric and use the provided errorOptions object
 
             // TUTOR_TODO Chapter 12 - set the system state to RED and pass the provided error message
-        });
-};
+        })
+}
 
 const subscribeSymbolPrices = () => {
-    const trs = document.querySelectorAll("#portfolioTableData tr");
+    const trs = document.querySelectorAll('#portfolioTableData tr');
 
-    trs.forEach(tr => {
-        const symbol = tr.getAttribute("id");
+    trs.forEach((tr) => {
+        const symbol = tr.getAttribute('id');
 
-        subscribeBySymbol(symbol, updateInstruments);
-    });
-};
+        subscribeBySymbol(symbol, updateInstruments)
+    })
+}
 
 const unsubscribeSymbolPrices = () => {
+
     // TUTOR_TODO Chapter 3 - Traverse the saved subscriptions and close each one.
     // We need to do this, because when the portfolio changes, we need to clear the existing subscriptions and subscribe to the new symbol's stream
-};
+
+}
 
 const subscribeBySymbol = (symbol, callback) => {
+
     // TUTOR_TODO Chapter 3 - Subscribe to a stream called 'T42.MarketStream.Subscribe'
     // as a second parameter pass an options object with an `arguments` property, which has a property 'Symbol' and assign to it the symbol variable passed to this function
     // When the promise is resolved save the created subscription so that you can later close it and subscribe to new streams (when the portfolio changes)
     // Finally subscribe to the created subscription's onData event and invoke the callback passed to this function with the received streamData
-};
+
+}
 
 const addRow = (table, rowData, emptyFlag) => {
     emptyFlag = emptyFlag || true;
-    const row = document.createElement("tr");
+    const row = document.createElement('tr');
 
-    addRowCell(row, rowData.RIC || "");
-    addRowCell(row, rowData.Description || "");
-    addRowCell(row, rowData.bid || "", "text-right");
-    addRowCell(row, rowData.ask || "", "text-right");
+    addRowCell(row, rowData.RIC || '');
+    addRowCell(row, rowData.Description || '');
+    addRowCell(row, rowData.bid || '', 'text-right');
+    addRowCell(row, rowData.ask || '', 'text-right');
 
     row.onclick = function() {
         if (emptyFlag) {
-            removeChildNodes("methodsList");
+            removeChildNodes('methodsList');
         }
 
         // TUTOR_TODO Chapter 2.3 - Discover all registered methods with objectType 'Instrument'
-        console.log(
-            "TCL: row.onclick -> glue.agm.methods()",
-            glue.agm.methods()
-        );
-        console.log("TCL: row.onclick -> method");
-        const partyMethods = glue.agm
-            .methods()
-            .filter(
-                method =>
-                    method.objectTypes &&
-                    method.objectTypes.includes("Instrument")
-            );
+        // invoke addAvailableMethods(*discovered methods*, rowData.RIC, rowData.BPOD)
 
-        addAvailableMethods(partyMethods, rowData.RIC, rowData.BPOD);
+        // addAvailableMethods(partyMethods, rowData.RIC, rowData.BPOD);
 
-        row.setAttribute("data-toggle", "modal");
-        row.setAttribute("data-target", "#instruments");
-    };
-    row.setAttribute("id", rowData.RIC);
+        row.setAttribute('data-toggle', 'modal');
+        row.setAttribute('data-target', '#instruments');
+    }
+    row.setAttribute('id', rowData.RIC);
     table.appendChild(row);
 };
 
 const addRowCell = (row, cellData, cssClass) => {
-    var cell = document.createElement("td");
+    var cell = document.createElement('td');
     cell.innerText = cellData;
 
     if (cssClass) {
@@ -254,21 +255,19 @@ const addRowCell = (row, cellData, cssClass) => {
     row.appendChild(cell);
 };
 
-const setupPortfolio = portfolios => {
+const setupPortfolio = (portfolios) => {
     // Updating table with the new portfolio
-    const table = document
-        .getElementById("portfolioTable")
-        .getElementsByTagName("tbody")[0];
+    const table = document.getElementById('portfolioTable').getElementsByTagName('tbody')[0];
 
     // Removing all old data
-    removeChildNodes("portfolioTableData");
+    removeChildNodes('portfolioTableData');
 
-    portfolios.forEach(item => {
+    portfolios.forEach((item) => {
         addRow(table, item);
     });
 };
 
-const removeChildNodes = elementId => {
+const removeChildNodes = (elementId) => {
     const methodsList = document.getElementById(elementId);
 
     while (methodsList && methodsList.firstChild) {
@@ -276,13 +275,13 @@ const removeChildNodes = elementId => {
     }
 };
 
-const updateInstruments = streamData => {
+const updateInstruments = (streamData) => {
     const data = JSON.parse(streamData.data.data)[0];
     const symbol = data.name;
     const prices = data.image || data.update;
 
     if (!symbol || !prices) {
-        return;
+        return
     }
 
     const bid = prices.BID;
@@ -291,25 +290,26 @@ const updateInstruments = streamData => {
     const symbolRow = document.getElementById(symbol);
 
     if (symbolRow !== null) {
-        const symbolRows = symbolRow.getElementsByTagName("td");
+        const symbolRows = symbolRow.getElementsByTagName('td');
         symbolRows[2].innerHTML = bid || 0;
         symbolRows[3].innerHTML = ask || 0;
     }
 };
 
 const addAvailableMethods = (methods, symbol, bpod) => {
-    const methodsList = document.getElementById("methodsList");
+    const methodsList = document.getElementById('methodsList');
 
-    methods.forEach(method => {
-        const button = document.createElement("button");
-        button.className = "btn btn-default";
-        button.setAttribute("type", "button");
-        button.setAttribute("data-toggle", "tooltip");
-        button.setAttribute("data-placement", "bottom");
-        button.setAttribute("title", method.displayName || method.name);
+    methods.forEach((method) => {
+        const button = document.createElement('button');
+        button.className = 'btn btn-default';
+        button.setAttribute('type', 'button');
+        button.setAttribute('data-toggle', 'tooltip');
+        button.setAttribute('data-placement', 'bottom');
+        button.setAttribute('title', method.displayName || method.name);
         button.textContent = method.displayName || method.name;
 
-        button.onclick = event => {
+        button.onclick = (event) => {
+
             const options = {
                 instrument: {
                     ric: symbol,
@@ -318,51 +318,47 @@ const addAvailableMethods = (methods, symbol, bpod) => {
             };
 
             invokeAgMethodByName(method.name, options);
-        };
+        }
 
         methodsList.appendChild(button);
-    });
+    })
 
     // Enable tooltip
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 };
 
 const invokeAgMethodByName = (methodName, params) => {
+
     // TUTOR_TODO 2.3 invoke the agm method with the passed methodName and passed params
-    glue.agm
-        .invoke(methodName, params)
-        .then(() => {
-            console.log("invoked correctly");
-        })
-        .catch(console.error);
+
 };
 
-const displayResult = result => {
-    console.log("TCL: displayResult");
-    removeChildNodes("resultInstrumentTbl");
+const displayResult = (result) => {
+    removeChildNodes('resultInstrumentTbl');
 
-    const resultInstrumentTbl = document.getElementById("resultInstrumentTbl");
+    const resultInstrumentTbl = document.getElementById('resultInstrumentTbl');
 
-    result.forEach(item => {
+    result.forEach((item) => {
         addTickerRow(resultInstrumentTbl, item);
     });
 
-    $("#searchResult").modal("show");
+    $('#searchResult').modal('show');
 };
 
 const addTickerRow = (table, item) => {
-    const row = document.createElement("tr");
-    const portfolioTableDataTbl = document.getElementById("portfolioTableData");
 
-    addRowCell(row, item.RIC || "");
-    addRowCell(row, item.Description || "");
+    const row = document.createElement('tr');
+    const portfolioTableDataTbl = document.getElementById('portfolioTableData');
+
+    addRowCell(row, item.RIC || '');
+    addRowCell(row, item.Description || '');
 
     row.onclick = () => {
         addRow(portfolioTableDataTbl, item);
-        $("#searchResult").modal("hide");
-    };
+        $('#searchResult').modal('hide');
+    }
 
     table.appendChild(row);
 
@@ -371,11 +367,9 @@ const addTickerRow = (table, item) => {
 
 const getCurrentPortfolio = () => {
     const portfolio = [];
-    const portfolioTableRows = document.querySelectorAll(
-        "#portfolioTableData tr"
-    );
+    const portfolioTableRows = document.querySelectorAll('#portfolioTableData tr');
 
-    portfolioTableRows.forEach(row => {
+    portfolioTableRows.forEach((row) => {
         const symbol = {};
         const tds = row.childNodes;
 
@@ -394,7 +388,7 @@ const getCurrentPortfolio = () => {
                     symbol.ask = td.textContent;
                     break;
             }
-        });
+        })
         portfolio.push(symbol);
     });
 
@@ -402,17 +396,18 @@ const getCurrentPortfolio = () => {
 };
 
 const setUpStreamIndicator = () => {
-    const toggleStreamAvailable = available => {
-        toggleStatusLabel("priceSpan", "Price feed is", available);
+
+    const toggleStreamAvailable = (available) => {
+        toggleStatusLabel('priceSpan', 'Price feed is', available);
     };
 
-    glue.agm.methodAdded(method => {
+    glue.agm.methodAdded((method) => {
         if (method.name === StreamName && method.supportsStreaming) {
             toggleStreamAvailable(true);
         }
     });
 
-    glue.agm.methodRemoved(method => {
+    glue.agm.methodRemoved((method) => {
         if (method.name === StreamName && method.supportsStreaming) {
             toggleStreamAvailable(false);
         }
@@ -420,8 +415,8 @@ const setUpStreamIndicator = () => {
 };
 
 const setUpGlueIndicator = () => {
-    const toggleGlueAvailable = available => {
-        toggleStatusLabel("glueSpan", "Glue is", available);
+    const toggleGlueAvailable = (available) => {
+        toggleStatusLabel('glueSpan', 'Glue is', available);
     };
 
     glue.connection.connected(() => {
@@ -437,23 +432,26 @@ const toggleStatusLabel = (elementId, text, available) => {
     const span = document.getElementById(elementId);
 
     if (available) {
-        span.classList.remove("label-warning");
-        span.classList.add("label-success");
-        span.textContent = text + " available";
+        span.classList.remove('label-warning');
+        span.classList.add('label-success');
+        span.textContent = text + ' available';
     } else {
-        span.classList.remove("label-success");
-        span.classList.add("label-warning");
-        span.textContent = text + " unavailable";
+        span.classList.remove('label-success');
+        span.classList.add('label-warning');
+        span.textContent = text + ' unavailable';
     }
 };
 
 const setUpWindowEventsListeners = () => {
+
     // TUTOR_TODO Chapter 4.2 - subscribe to the onWindowRemoved event and implement the handler
     // compare the closed window's id with the client window id you were passed on window creation
     // if they match - glue.windows.my().close();
+
 };
 
 const setUpTabControls = () => {
+
     // TUTOR_TODO Chapter 4.4 - when if the current window is a tab, if it is not return, because in this case we do not need any tab controls.
 
     // TUTOR_TODO Chapter 4.4 - we have prepared for you the config objects for both buttons.
@@ -473,86 +471,81 @@ const setUpTabControls = () => {
 
     // TUTOR_TODO Chapter 4.4 - Implement the logic for each of these events - which buttons should show/hide in each scenario?
     // hint - maybe glue.windows.my().tabs.length would be useful somewhere?
-    glue.windows.my().onWindowAttached(win => {});
+    glue.windows.my().onWindowAttached((win) => {
 
-    glue.windows.my().onAttached(win => {});
+    });
 
-    glue.windows.my().onDetached(win => {});
+    glue.windows.my().onAttached((win) => {
 
-    glue.windows.my().onWindowDetached(win => {});
+    });
+
+    glue.windows.my().onDetached((win) => {
+
+    });
+
+    glue.windows.my().onWindowDetached((win) => {
+
+    });
 
     // TUTOR_TODO 4.4  - Implement the frame button click events
     // - Which button was clicked?
     // - How are we going to remember the tabs we detached?
     // - glue.windows.findById() will be quite helpful here
-    glue.windows.my().onFrameButtonClicked(buttonInfo => {});
+    glue.windows.my().onFrameButtonClicked((buttonInfo) => {
+
+    });
 
     // TUTOR_TODO Chapter 4.4 - What frame button should be displayed when the tab is created?
+
 };
 
-const search = event => {
+const search = (event) => {
     event.preventDefault();
-    var searchValue = document.getElementById("ticker").value;
+    var searchValue = document.getElementById('ticker').value;
 
     // TUTOR_TODO Chapter 6 - Use the created query's search function and pass in the searchValue;
 };
 
-const sendPortfolioAsEmailClicked = event => {
+const sendPortfolioAsEmailClicked = (event) => {
     event.preventDefault();
 
     const sendPortfolioAsEmail = (client, portfolio) => {
+
         const getEmailContent = (client, portfolio) => {
-            const props = ["ric", "description", "bid", "ask"];
 
-            const csv =
-                props.join(", ") +
-                "\n" +
-                portfolio
-                    .map(row => {
-                        return props
-                            .map((prop, index) => {
-                                let value = row[prop];
+            const props = ['ric', 'description', 'bid', 'ask']
 
-                                if (index === 1) {
-                                    value = '"' + value + '"';
-                                }
+            const csv = props.join(", ") + "\n" +
+                portfolio.map((row) => {
+                    return props.map((prop, index) => {
+                        let value = row[prop];
 
-                                return value;
-                            })
-                            .join(", ");
-                    })
-                    .join("\n");
+                        if (index === 1) {
+                            value = '"' + value + '"'
+                        }
 
-            const html =
-                "<html>\n<body>\n<table>\n<tr><th>" +
-                props.join("</th><th>") +
-                "</th></tr>" +
-                portfolio
-                    .map(row => {
-                        return (
-                            "<tr><td>" +
-                            props
-                                .map(prop => {
-                                    const value = row[prop];
-                                    return value;
-                                })
-                                .join("</td><td>") +
-                            "</td></tr>"
-                        );
-                    })
-                    .join("\n") +
-                "\n</table>\n</body></html>\n";
+                        return value;
+                    }).join(", ")
+                }).join("\n");
 
-            const fileName = "client-" + client.pId + "-portfolio.csv";
+            const html = "<html>\n<body>\n<table>\n<tr><th>" + props.join("</th><th>") + "</th></tr>" +
+                portfolio.map((row) => {
+                    return "<tr><td>" + props.map((prop) => {
+                        const value = row[prop];
+                        return value;
+                    }).join("</td><td>") + "</td></tr>"
+                }).join("\n") + "\n</table>\n</body>\</html>\n";
+
+            const fileName = 'client-' + client.pId + '-portfolio.csv';
 
             const file = {
                 fileName: fileName,
-                data: csv
+                data: csv,
             };
 
             const newEmail = {
-                to: "john.doe@domain.com",
-                subject: "Hey John, look at " + client.name + "'s portfolio",
+                to: 'john.doe@domain.com',
+                subject: 'Hey John, look at ' + client.name + '\'s portfolio',
                 bodyHtml: html,
                 attachments: [file]
             };
@@ -563,58 +556,53 @@ const sendPortfolioAsEmailClicked = event => {
         const content = getEmailContent(client, portfolio);
 
         // TUTOR_TODO Chapter 8 - create a new email by passing the content object above.
-    };
+    }
 
     var portfolio = getCurrentPortfolio();
 
     sendPortfolioAsEmail(partyObj, portfolio);
 };
 
-const sendPortfolioToExcelClicked = event => {
+const sendPortfolioToExcelClicked = (event) => {
     event.preventDefault();
 
     const sendPortfolioToExcel = (client, portfolio) => {
-        const fields = ["ric", "description", "bid", "ask"];
+
+        const fields = ['ric', 'description', 'bid', 'ask'];
 
         const config = {
-            columnConfig: [
-                {
-                    fieldName: "ric",
-                    header: "RIC"
-                },
-                {
-                    fieldName: "description",
-                    header: "Description"
-                },
-                {
-                    fieldName: "bid",
-                    header: "Bid Price"
-                },
-                {
-                    fieldName: "ask",
-                    header: "Ask Price"
-                }
-            ],
+            columnConfig: [{
+                fieldName: 'ric',
+                header: 'RIC'
+            }, {
+                fieldName: 'description',
+                header: 'Description'
+            }, {
+                fieldName: 'bid',
+                header: 'Bid Price'
+            }, {
+                fieldName: 'ask',
+                header: 'Ask Price'
+            }],
             data: portfolio,
             options: {
                 worksheet: client.name,
-                workbook: "ExportedPortfolios"
+                workbook: 'ExportedPortfolios'
             }
-        };
+        }
 
-        const loadPortfolioFromExcel = portfolio => {
+        const loadPortfolioFromExcel = (portfolio) => {
+
             unsubscribeSymbolPrices();
 
-            removeChildNodes("portfolioTableData");
-            const table = document
-                .getElementById("portfolioTable")
-                .getElementsByTagName("tbody")[0];
+            removeChildNodes('portfolioTableData');
+            const table = document.getElementById('portfolioTable').getElementsByTagName('tbody')[0];
 
-            portfolio.forEach(item => {
+            portfolio.forEach((item) => {
                 item.RIC = item.ric;
                 item.Description = item.description;
                 addRow(table, item);
-            });
+            })
 
             subscribeSymbolPrices();
         };
