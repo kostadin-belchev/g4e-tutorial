@@ -175,6 +175,9 @@ const trackTheme = () => {
 
 const invokeAgMethod = client => {
     // TUTOR_TODO Chapter 2.2 - Invoke the 'SetParty' AGM method passing the client object for the party argument.
+    glue.agm.invoke("SetParty", {
+        party: client
+    });
 };
 
 const getWindowDirection = () => {
