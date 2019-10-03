@@ -244,8 +244,14 @@ const addRow = (table, rowData, emptyFlag) => {
 
         // TUTOR_TODO Chapter 2.3 - Discover all registered methods with objectType 'Instrument'
         // invoke addAvailableMethods(*discovered methods*, rowData.RIC, rowData.BPOD)
-
-        // addAvailableMethods(partyMethods, rowData.RIC, rowData.BPOD);
+        const partyMethods = glue.agm
+            .methods()
+            .filter(
+                method =>
+                    method.objectTypes &&
+                    method.objectTypes.includes("Instrument")
+            );
+        addAvailableMethods(partyMethods, rowData.RIC, rowData.BPOD);
 
         row.setAttribute("data-toggle", "modal");
         row.setAttribute("data-target", "#instruments");
@@ -341,6 +347,7 @@ const addAvailableMethods = (methods, symbol, bpod) => {
 
 const invokeAgMethodByName = (methodName, params) => {
     // TUTOR_TODO 2.3 invoke the agm method with the passed methodName and passed params
+    glue.agm.invoke(methodName, params);
 };
 
 const displayResult = result => {
