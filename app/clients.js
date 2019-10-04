@@ -128,6 +128,7 @@ const setupClients = () => {
 
     const getClients = (count, callback) => {
         // TUTOR_TODO chapter 4.2 - start the loader here
+        glue.windows.my().showLoader();
 
         $.ajax({
             method: "GET",
@@ -151,11 +152,12 @@ const setupClients = () => {
             })
             .fail((jqXHR, textStatus) => {
                 // TUTOR_TODO chapter 4.2 - stop the loader here
-
+                glue.windows.my().hideLoader();
                 console.error("Request failed: " + textStatus);
             })
             .always(() => {
                 // TUTOR_TODO chapter 4.2 - stop the loader here
+                glue.windows.my().hideLoader();
             });
     };
 
@@ -196,9 +198,16 @@ const openWindow = (windowName, myWin, direction) => {
     // create a context object inside the options and pass your window's id 'glue.windows.my().id'
     // TUTOR_TODO Chapter 4.1 - create an options object and define mode, relativeTo and relativeDirection properties
     const options = {
-        mode: "flat",
+        mode: "html",
+        allowMinimize: false,
+        allowMaximize: false,
+        allowCollapse: false,
+        allowClose: false,
+        minHeight: 400,
+        minWidth: 600,
         relativeTo: myWin.id,
-        relativeDirection: direction
+        relativeDirection: direction,
+        context: { parentWindowId: glue.windows.my().id }
     };
     // Use the Windows API to open a window with the provided windowName, options object and correct URL
     glue.windows.open(
