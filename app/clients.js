@@ -59,6 +59,7 @@ const setUpUi = () => {
         portfolioButton.onclick = () => {
             // TUTOR_TODO Chapter 4.1 - Call openWindow with a window name, current window instance and a direction
             const myWin = glue.windows.my();
+            openWindow("Portfolio", myWin, "bottom");
         };
     }
 
@@ -194,7 +195,17 @@ const openWindow = (windowName, myWin, direction) => {
     // is mode: 'flat', cannot be minimized, maximized, collapsed or closed, has minimum height 400 and minimum width 600
     // create a context object inside the options and pass your window's id 'glue.windows.my().id'
     // TUTOR_TODO Chapter 4.1 - create an options object and define mode, relativeTo and relativeDirection properties
+    const options = {
+        mode: "flat",
+        relativeTo: myWin.id,
+        relativeDirection: direction
+    };
     // Use the Windows API to open a window with the provided windowName, options object and correct URL
+    glue.windows.open(
+        windowName,
+        window.location.href.replace("clients.html", "portfolio.html"),
+        options
+    );
     // TUTOR_TODO Chapter 5 - Modify split the current options object into two separate objects - context and windowSettings
     // use the Application Management API to open a portfolio instance
 };
