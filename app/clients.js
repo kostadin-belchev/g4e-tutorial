@@ -56,7 +56,6 @@ const setUpUi = () => {
     const portfolioButton = document.getElementById("portfolioBtn");
 
     if (portfolioButton) {
-        console.log("TCL: setUpUi -> portfolioButton", portfolioButton);
         portfolioButton.onclick = () => {
             // TUTOR_TODO Chapter 4.1 - Call openWindow with a window name, current window instance and a direction
             const myWin = glue.windows.my();
@@ -83,12 +82,12 @@ const setUpUi = () => {
         // TUTOR_TODO Chapter 4.4 - Use the windows API for handling frame button clicks to handle a frame button click, check the Id and open a portfolio window
         myWindow.onFrameButtonClicked(buttonInfo => {
             if (buttonInfo.buttonId === "portfolio-btn") {
-                console.log("Search button clicked");
-                openWindow("Portfolio", myWindow, "bottom");
+                // TUTOR_TODO Chapter 4.4 - pass the result of getWindowDirection as a second argument for openWindow
+                const direction = getWindowDirection();
+
+                openWindow("Portfolio", myWindow, direction);
             }
         });
-        // TUTOR_TODO Chapter 4.4 - pass the result of getWindowDirection as a second argument for openWindow
-        const direction = getWindowDirection();
     };
 
     // TUTOR_TODO Chapter 11 - check if you are in an activity and setup the frame buttons and events only if you are NOT
@@ -110,7 +109,7 @@ const setupClients = () => {
             // TUTOR_TODO Chapter 4.4 - pass the result of getWindowDirection as a second argument for openTabWindow
             const direction = getWindowDirection();
 
-            openTabWindow(client, "right");
+            openTabWindow(client, direction);
             invokeAgMethod(client);
         };
         table.appendChild(row);
@@ -196,11 +195,25 @@ const invokeAgMethod = client => {
 
 const getWindowDirection = () => {
     // TUTOR_TODO Chapter 4.4 - get the primary monitor
+    const primaryMonitor = glue42gd.monitors.find(monitor => monitor.isPrimary);
+    const myWindow = glue.windows.my();
     // get the bottom neightbours
     // get the working area height
     // calculate the window bottom
+    const windowBottom = myWindow.bounds.top + myWindow.bounds.height;
+
+    const totalHeight = 400 + windowBottom;
+
     // pass 'bottom' if there is enough space for a portfolio window
     // else pass right
+    if (
+        myWindow.bottomNeighbours.length === 0 &&
+        totalHeight < primaryMonitor.workingAreaHeight
+    ) {
+        return "bottom";
+    }
+
+    return "right";
 };
 
 const openWindow = (windowName, myWin, direction) => {
