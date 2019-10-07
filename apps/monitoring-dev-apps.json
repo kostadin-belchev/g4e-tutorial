@@ -1,0 +1,25 @@
+[
+	{
+        "title": "Metrics Viewer",
+        "type": "exe",
+        "name": "metrics",
+		"icon": "http://localhost:22080/resources/icons/metrics-viewer.ico",
+        "details": {
+            "path": "%GDDIR%/../Monitoring/MetricsViewer/",
+			"command": "MetricsViewer.exe",
+			"parameters": "--background_color white"
+        },
+        "hidden": true
+    },
+	{
+        "title": "AGM Viewer",
+        "type": "exe",
+        "name": "agm-viewer",
+		"icon": "http://localhost:22080/resources/icons/agm-viewer.ico",
+        "details": {
+            "path": "%GDDIR%/../Monitoring/AgmViewer/",
+			"command": "AgmViewer.exe"
+        },
+        "hidden": true
+    }
+]

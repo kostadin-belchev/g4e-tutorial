@@ -1,0 +1,25 @@
+[
+  {
+    "title": "BCC Customer Manager",
+    "type": "window",
+    "name": "bcc-customer-manager",
+    "hidden": false,
+    "details": {
+      "url": "http://localhost:22858/",
+      "top": 100,
+      "left": 400,
+      "height": 800,
+      "width": 1020,
+      "title": "BCC Customer Manager",
+      "allowChannels": true
+    },
+    "ignoreSaveOnClose": true,
+    "customProperties": {
+      "includeInClientWorkspace": true,
+      "appManagerOrder": 3,
+      "consumes": [
+        "watchlist"
+      ]
+    }
+  }
+]

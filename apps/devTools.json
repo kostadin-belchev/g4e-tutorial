@@ -1,0 +1,166 @@
+[
+    {
+        "allowMultiple": true,
+        "details": {
+            "allowMaximize": false,
+            "height": 355,
+            "minHeight": 200,
+            "minWidth": 200,
+            "mode": "html",
+            "url": "http://localhost:22080/devTools/launcher",
+            "width": 300
+        },
+        "ignoreSaveOnClose": true,
+        "caption": "Dev Tools",
+        "name": "DevTools",
+        "title": "Dev Tools",
+        "type": "window",
+        "icon": "http://localhost:22080/resources/icons/devtools.ico",
+        "customProperties": {
+            "appManagerOrder": 60
+        }
+    },
+    {
+        "caption": "Dev Tools Help",
+        "details": {
+            "allowMaximize": true,
+            "height": 700,
+            "minHeight": 400,
+            "minWidth": 500,
+            "mode": "tab",
+            "tabGroupId": "DevToolsTabs",
+            "tabTitle": "Help",
+            "url": "http://localhost:22080/devTools/help/",
+            "width": 960
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "DevToolsHelp",
+        "title": "Help",
+        "type": "window"
+    },
+    {
+        "caption": "ApplicationMonitor",
+        "details": {
+            "allowMaximize": true,
+            "height": 700,
+            "minHeight": 400,
+            "minWidth": 1100,
+            "mode": "tab",
+            "tabGroupId": "DevToolsTabs",
+            "tabTitle": "ApplicationMonitor",
+            "url": "http://localhost:22080/devTools/appMonitor/",
+            "width": 1300
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "ApplicationMonitor",
+        "title": "ApplicationMonitor",
+        "type": "window"
+    },
+    {
+        "caption": "PerformanceReport",
+        "details": {
+            "allowMaximize": true,
+            "height": 700,
+            "minHeight": 400,
+            "minWidth": 500,
+            "mode": "tab",
+            "tabGroupId": "DevToolsTabs",
+            "tabTitle": "Performance Report",
+            "url": "http://localhost:3002/",
+            "width": 960
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "PerformanceReport",
+        "title": "Performance Report",
+        "type": "window"
+    },
+    {
+        "caption": "AdvancedOptions",
+        "details": {
+            "allowMaximize": true,
+            "height": 700,
+            "minHeight": 400,
+            "minWidth": 500,
+            "mode": "html",
+            "url": "http://localhost:3004/",
+            "width": 960
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "AdvancedOptions",
+        "title": "Advanced Options",
+        "type": "window"
+    },
+    {
+        "caption": "ContextViewer",
+        "details": {
+            "allowMaximize": true,
+            "focus": true,
+            "height": 770,
+            "minHeight": 400,
+            "minWidth": 500,
+            "mode": "tab",
+            "tabGroupId": "DevToolsTabs",
+            "tabIndex": 2,
+            "tabTitle": "Context Viewer",
+            "url": "http://localhost:22080/devTools/contextViewer/",
+            "width": 1400
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "ContextViewer",
+        "title": "ContextViewer",
+        "type": "window"
+    },
+    {
+        "caption": "Interop Viewer",
+        "details": {
+            "allowMaximize": true,
+            "minHeight": 400,
+            "minWidth": 500,
+            "mode": "tab",
+            "tabGroupId": "Interop",
+            "tabTitle": "Interop Viewer",
+            "tabIndex": 1,
+            "url": "http://localhost:22080/devTools/interopViewer/",
+            "width": 1200,
+            "height": 800
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "InteropViewer",
+        "title": "Interop Viewer",
+        "type": "window"
+    },
+    {
+        "caption": "InvokeMethod",
+        "details": {
+            "allowMaximize": true,
+            "mode": "tab",
+            "tabGroupId": "Interop",
+            "url": "http://localhost:22080/devTools/interopViewer/#invoke-method"
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "InvokeMethod",
+        "title": "InvokeMethod",
+        "type": "window"
+    },
+    {
+        "caption": "StreamSubscription",
+        "details": {
+            "allowMaximize": true,
+            "mode": "tab",
+            "tabGroupId": "Interop",
+            "url": "http://localhost:22080/devTools/interopViewer/#stream-subscription"
+        },
+        "hidden": true,
+        "ignoreSaveOnClose": true,
+        "name": "StreamSubscription",
+        "title": "StreamSubscription",
+        "type": "window"
+    }
+]

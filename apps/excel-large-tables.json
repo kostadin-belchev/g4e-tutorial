@@ -1,0 +1,22 @@
+[{
+        "title": "EXCEL - Large Tables Demo",
+        "type": "window",
+        "name": "excel-large-tables",
+        "icon": "http://localhost:22080/resources/icons/excel.ico",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/excel-large-tables",
+            "height": 1000,
+            "width": 1010,
+            "left": 100,
+            "top": 100,
+            "mode": "tab",
+            "title": "EXCEL - Large Tables Demo",
+            "backgroundColor": "#1a2b30",
+            "focus": false,
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        }
+}]

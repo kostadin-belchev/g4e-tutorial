@@ -1,0 +1,51 @@
+[
+  {
+    "title": "BCC Instrument Chart 🔗",
+    "type": "window",
+    "name": "bcc-instrument-chart-channels",
+    "hidden": false,
+    "details": {
+      "url": "http://localhost:5005/?useChannels=true",
+      "top": 100,
+      "left": 400,
+      "height": 600,
+      "width": 660,
+      "title": "BCC Instrument Chart 🔗",
+      "allowChannels": true,
+      "mode": "tab"
+    },
+    "ignoreSaveOnClose": true,
+    "customProperties": {
+      "includeInClientWorkspace": true,
+      "appManagerOrder": 4,
+      "consumes": [
+        "watchlist"
+      ]
+    }
+  },
+  {
+    "title": "BCC Instrument Chart",
+    "type": "window",
+    "name": "bcc-instrument-chart-no-channels",
+    "hidden": false,
+    "allowMultiple": false,
+    "details": {
+      "url": "http://localhost:5005/",
+      "top": 100,
+      "left": 400,
+      "height": 600,
+      "width": 660,
+      "title": "BCC Instrument Chart",
+      "allowChannels": false,
+      "mode": "tab"
+    },
+    "ignoreSaveOnClose": true,
+    "customProperties": {
+      "includeInClientWorkspace": true,
+      "appManagerOrder": 4,
+      "consumes": [
+        "watchlist"
+      ]
+    }
+  }
+]

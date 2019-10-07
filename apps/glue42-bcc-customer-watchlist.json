@@ -1,0 +1,25 @@
+[
+  {
+    "title": "BCC Customer Watchlist",
+    "type": "window",
+    "name": "bcc-customer-watchlist",
+    "hidden": false,
+    "details": {
+      "url": "http://localhost:22868/",
+      "top": 100,
+      "left": 400,
+      "height": 600,
+      "width": 660,
+      "title": "BCC Customer Watchlist",
+      "allowChannels": true
+    },
+    "ignoreSaveOnClose": true,
+    "customProperties": {
+      "includeInClientWorkspace": true,
+      "appManagerOrder": 4,
+      "consumes": [
+        "watchlist"
+      ]
+    }
+  }
+]

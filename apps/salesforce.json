@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Salesforce App",
+        "type": "window",
+        "name": "salesforce",
+        "icon": "http://localhost:22080/resources/icons/sf.ico",
+        "hidden": false,
+        "details": {
+            "url": "https://login.salesforce.com/login.jsp?un=t42demo.dev@tick42.com&pw=Aa123456789&startURL=https://t42-demo-dev-ed.lightning.force.com/lightning/page/home",
+            "top": 25,
+            "left": 800,
+            "height": 800,
+            "width": 780,
+			"sfMode": true
+        },
+		"customProperties": {
+			"includeInCanvas": true
+		}
+    }
+]

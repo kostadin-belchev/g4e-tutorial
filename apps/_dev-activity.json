@@ -1,0 +1,353 @@
+[
+    {
+        "title": "Dev App (tab)",
+        "type": "window",
+        "name": "dev-app-tab",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-app.html",
+            "top": 100,
+            "left": 200,
+            "width": 600,
+            "height": 300,
+            "mode": "tab",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App (flat)",
+        "type": "window",
+        "name": "dev-app-flat",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-app.html",
+            "top": 100,
+            "left": 200,
+            "width": 600,
+            "height": 300,
+            "mode": "flat"
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App (html)",
+        "type": "window",
+        "name": "dev-app-html",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "top": 100,
+            "left": 200,
+            "width": 600,
+            "height": 300,
+            "mode": "html",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 1-10",
+        "type": "window",
+        "name": "dev-app-1",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 2-10",
+        "type": "window",
+        "name": "dev-app-2",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 3-10",
+        "type": "window",
+        "name": "dev-app-3",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 4-10",
+        "type": "window",
+        "name": "dev-app-4",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 5-10",
+        "type": "window",
+        "name": "dev-app-5",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 6-10",
+        "type": "window",
+        "name": "dev-app-6",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 7-10",
+        "type": "window",
+        "name": "dev-app-7",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 8-10",
+        "type": "window",
+        "name": "dev-app-8",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 9-10",
+        "type": "window",
+        "name": "dev-app-9",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev App 10-10",
+        "type": "window",
+        "name": "dev-app-10",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/layouts/layouts-act-app.html",
+            "mode": "flat",
+            "allowCollapse": true
+        },
+        "ignoreSavedLayout": true,
+        "customProperties": {
+            "category": "Instruments",
+            "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev Activity 10",
+        "type": "activity",
+        "name": "dev-activity-10",
+        "hidden": true,
+        "details": {
+          "owner": {
+            "type": "dev-app-1",
+            "name": "dev-activity-win1",
+            "left": 1,
+            "top": 1,
+            "width": 4,
+            "height": 4
+          },
+          "windows": [
+            {
+                "type": "dev-app-2",
+                "name": "dev-activity-win2",
+                "left": 5,
+                "top": 1,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-3",
+                "name": "dev-activity-win3",
+                "left": 9,
+                "top": 1,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-4",
+                "name": "dev-activity-win4",
+                "left": 13,
+                "top": 1,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-5",
+                "name": "dev-activity-win5",
+                "left": 17,
+                "top": 1,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-6",
+                "name": "dev-activity-win6",
+                "left": 1,
+                "top": 5,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-7",
+                "name": "dev-activity-win7",
+                "left": 5,
+                "top": 5,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-8",
+                "name": "dev-activity-win8",
+                "left": 9,
+                "top": 5,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-9",
+                "name": "dev-activity-win9",
+                "left": 13,
+                "top": 5,
+                "width": 4,
+                "height": 4
+            },
+            {
+                "type": "dev-app-10",
+                "name": "dev-activity-win10",
+                "left": 17,
+                "top": 5,
+                "width": 4,
+                "height": 4
+            }
+          ],
+          "layout": {
+            "mode": "percents",
+            "cellWidth": 4,
+            "cellHeight": 8
+          }
+        },
+        "customProperties": {
+          "includeInCanvas": false
+        }
+    },
+    {
+        "title": "Dev Activity 2",
+        "type": "activity",
+        "name": "dev-activity-2",
+        "hidden": true,
+        "details": {
+          "owner": {
+            "type": "dev-app-1",
+            "name": "dev-activity-win1",
+            "left": 1,
+            "top": 1,
+            "width": 4,
+            "height": 4
+          },
+          "windows": [
+            {
+                "type": "dev-app-2",
+                "name": "dev-activity-win2",
+                "left": 5,
+                "top": 1,
+                "width": 4,
+                "height": 4
+            }
+          ],
+          "layout": {
+            "mode": "percents",
+            "cellWidth": 5,
+            "cellHeight": 8
+          }
+        },
+        "customProperties": {
+          "includeInCanvas": false
+        }
+    }
+ ]

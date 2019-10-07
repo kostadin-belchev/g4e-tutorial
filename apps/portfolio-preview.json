@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Portfolio Preview",
+    "type": "window",
+    "name": "portfolio-preview",
+    "hidden": true,
+    "details": {
+      "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/portfoliopreview",
+      "top": 100,
+      "left": 400,
+      "height": 400,
+      "width": 560,
+      "title": "Portfolio Preview"
+    },
+    "customProperties": {
+      "includeInClientWorkspace": true,
+      "appManagerOrder": 4
+    }
+  },
+  {
+    "title": "Portfolio Preview",
+    "type": "window",
+    "name": "no-channels-portfolio-preview",
+    "hidden": true,
+    "details": {
+      "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/nochannelsportfoliopreview",
+      "top": 100,
+      "left": 400,
+      "height": 605,
+      "width": 560,
+      "allowChannels": false,
+      "title": "Portfolio Preview"
+    },
+    "ignoreSaveOnClose": true,
+    "customProperties": {
+      "appManagerOrder": 4,
+      "consumes": [
+        "Instrument"
+      ]
+    }
+  }
+]

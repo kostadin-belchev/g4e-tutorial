@@ -1,0 +1,30 @@
+[
+    {
+      "title": "Clients Provider",
+      "type": "node",
+      "name": "clients-provider",
+	  "hidden": true,
+      "service": true,
+      "details": {
+        "path": "%GDDIR%/../Demos/Web/gss-providers/clients-provider/dist/index.js",
+        "showConsole": false,
+        "passGlueToken": true
+      },
+      "autoStart": true,
+      "allowMultiple": false
+    },
+    {
+      "title": "Instruments Provider",
+      "type": "node",
+	  "hidden": true,
+      "service": true,
+      "name": "instruments-provider",
+      "details": {
+        "path": "%GDDIR%/../Demos/Web/gss-providers/instruments-provider/dist/index.js",
+        "showConsole": false,
+        "passGlueToken": true
+      },
+      "autoStart": true,
+      "allowMultiple": false
+    }
+  ]

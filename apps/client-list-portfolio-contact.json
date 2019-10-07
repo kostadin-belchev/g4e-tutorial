@@ -1,0 +1,315 @@
+[{
+        "title": "Client List",
+        "type": "window",
+        "name": "clientlist",
+        "icon": "http://localhost:22080/resources/icons/client-list.ico",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientlist",
+            "height": 640,
+            "width": 560,
+            "left": 100,
+            "top": 100,
+            "mode": "tab",
+            "title": "Client List",
+            "backgroundColor": "#1a2b30",
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "functions": [{
+                "key": "Access client Portfolio",
+                "description": "Show the portfolio for a selected client"
+            }],
+            "folder": "Clients",
+            "includeInCanvas": true,
+            "appManagerOrder": 1
+        }
+    },
+    {
+        "title": "Client Portfolio",
+        "type": "window",
+        "name": "clientportfolio",
+        "icon": "http://localhost:22080/resources/icons/client-portfolio.ico",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientportfolio/",
+            "top": 100,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Client Portfolio",
+            "backgroundColor": "#1a2b30",
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "includeInCanvas": true,
+            "appManagerOrder": 3
+        }
+    },
+    {
+        "title": "Glue42 Bloomberg Bridge",
+        "type": "exe",
+        "name": "bbg42brdg",
+        "icon": "http://localhost:22080/resources/icons/wpf.ico",
+        "hidden": true,
+        "details": {
+            "useShellExecute": true,
+            "path": "%GDDIR%/../Demos/Bloomberg.Bridge/",
+            "command": "Glue42.Bloomberg.Bridge.exe",
+            "parameters": "",
+            "left": 100,
+            "top": 75
+        },
+        "customProperties": {
+            "includeInCanvas": false,
+            "appManagerOrder": 2
+        }
+    },
+    {
+        "title": "Glue42 Bloomberg Simulator",
+        "type": "exe",
+        "name": "bbg42brdgsim",
+        "icon": "http://localhost:22080/resources/icons/wpf.ico",
+        "hidden": true,
+        "details": {
+            "useShellExecute": true,
+            "path": "%GDDIR%/../Demos/Bloomberg.Bridge/",
+            "command": "Glue42.Bloomberg.Bridge.exe",
+            "parameters": "--terminalType=sim",
+            "left": 100,
+            "top": 75
+        },
+        "customProperties": {
+            "includeInCanvas": false,
+            "appManagerOrder": 2
+        }
+    },
+    {
+        "title": "Client Portfolio - BBG",
+        "type": "window",
+        "name": "clientportfoliobbgdemo",
+        "icon": "http://localhost:22080/resources/icons/client-portfolio.ico",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/bbg-worksheet-demo/dist/bbg-worksheet-demo/",
+            "top": 100,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Client Portfolio - BBG",
+            "backgroundColor": "#1a2b30",
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "includeInCanvas": false,
+            "appManagerOrder": 3
+        }
+    },
+    {
+        "title": "Client Contact",
+        "type": "window",
+        "name": "clientcontact",
+        "icon": "http://localhost:22080/resources/icons/client-contact.ico",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientcontact/",
+            "top": 250,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Client Contact",
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "includeInCanvas": true,
+            "appManagerOrder": 4
+        }
+    },
+    {
+        "title": "Client Documents",
+        "type": "window",
+        "name": "singledocument",
+        "hidden": true,
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientcontact/",
+            "top": 250,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Client Documents",
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        }
+    },
+    {
+        "title": "Client List 🔗",
+        "type": "window",
+        "name": "channelsclientlist",
+        "icon": "http://localhost:22080/resources/icons/client-list.ico",
+        "hidden": false,
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientlist",
+            "height": 640,
+            "width": 560,
+            "left": 100,
+            "top": 100,
+            "mode": "tab",
+            "title": "Client List",
+            "backgroundColor": "#1a2b30",
+            "allowChannels": true,
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "useChannels": true,
+            "functions": [{
+                "key": "Access client Portfolio",
+                "description": "Show the portfolio for a selected client"
+            }],
+            "folder": "Clients",
+            "includeInCanvas": false,
+            "appManagerOrder": 1
+        }
+    },
+    {
+        "title": "Client Portfolio 🔗",
+        "type": "window",
+        "name": "channelsclientportfolio",
+        "hidden": false,
+        "icon": "http://localhost:22080/resources/icons/client-portfolio.ico",
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientportfolio/",
+            "top": 100,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Client Portfolio",
+            "backgroundColor": "#1a2b30",
+            "allowChannels": true,
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "useChannels": true,
+            "includeInCanvas": false,
+            "appManagerOrder": 3,
+            "consumes": [
+                "Client"
+            ]
+        }
+    },
+    {
+        "title": "Client Contact 🔗",
+        "type": "window",
+        "name": "channelsclientcontact",
+        "hidden": false,
+        "icon": "http://localhost:22080/resources/icons/client-contact.ico",
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientcontact/",
+            "top": 250,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Client Contact",
+            "allowChannels": true,
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "useChannels": true,
+            "includeInCanvas": false,
+            "appManagerOrder": 4,
+            "consumes": [
+                "Client"
+            ]
+        }
+    },
+    {
+        "title": "Portfolio Preview 🔗",
+        "type": "window",
+        "name": "channelsclientportfoliopreview",
+        "hidden": false,
+        "icon": "http://localhost:22080/resources/icons/clientportfolio.ico",
+        "details": {
+            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/portfoliopreview/",
+            "top": 350,
+            "left": 400,
+            "height": 640,
+            "width": 560,
+            "mode": "tab",
+            "title": "Portfolio Preview",
+            "allowChannels": true,
+            "loader": {
+                "enabled": true,
+                "hideOnLoad": true
+            }
+        },
+        "customProperties": {
+            "useChannels": true,
+            "includeInCanvas": false,
+            "appManagerOrder": 5
+        }
+    },
+    {
+        "title": "Client List (Browser)",
+        "type": "exe",
+        "name": "cl-browser",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/ie.ico",
+        "details": {
+            "useShellExecute": true,
+            "command": "explorer.exe",
+            "parameters": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientlist"
+        }
+    },
+    {
+        "title": "Client Portfolio (Browser)",
+        "type": "exe",
+        "name": "cp-browser",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/ie.ico",
+        "details": {
+            "useShellExecute": true,
+            "command": "explorer.exe",
+            "parameters": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientportfolio"
+        }
+    },
+    {
+        "title": "Client Contact (Browser)",
+        "type": "exe",
+        "name": "cc-browser",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/ie.ico",
+        "details": {
+            "useShellExecute": true,
+            "command": "explorer.exe",
+            "parameters": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientcontact"
+        }
+    }
+]

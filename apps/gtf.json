@@ -1,0 +1,16 @@
+[
+    {
+        "allowMultiple": false,
+        "autoStart": false,
+        "caption": "Glue Testing Framework",
+        "details": {
+            "path": "%GDDIR%/../GTF/",
+            "command": "StartGTF_GD3_PROD.bat"
+        },
+        "disabled": false,
+        "hidden": false,
+        "name": "GTF",
+        "title": "GTF",
+        "type": "exe"
+    }
+]

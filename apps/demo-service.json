@@ -1,0 +1,15 @@
+{
+    "title": "Demo Service",
+    "type": "window",
+    "name": "demo-service",
+    "hidden": true,
+    "autoStart": true,
+    "service": true,
+    "details": {
+      "url": "http://localhost:22080/demos-service/dist/",
+      "width": 250,
+      "height": 70,
+      "hidden": true,
+      "isSticky": false
+    }
+  }

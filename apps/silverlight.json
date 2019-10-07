@@ -1,0 +1,28 @@
+[
+    {
+        "title": "Silverlight Demo (External)",
+        "type": "exe",
+        "name": "silverlightDemoExternal",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/Silverlight_logo-icon-only.png",
+        "details": {
+            "path": "%SystemRoot%/System32",
+            "command": "cmd.exe",
+            "parameters": "/c %GDDIR%\\..\\Demos\\SilverlightDemo\\run-silverlight-demo-xap.bat",
+            "useShellExecute": true
+        }
+    },
+    {
+        "title": "Silverlight Demo (Browser)",
+        "type": "exe",
+        "name": "silverlightDemoBrowser",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/Silverlight_logo-icon-only.png",
+        "details": {
+            "path": "%SystemRoot%/System32",
+            "command": "cmd.exe",
+            "parameters": "/c %GDDIR%\\..\\Demos\\SilverlightDemo\\run-silverlight-demo-browser.bat",
+            "useShellExecute": true
+        }
+    }
+]
