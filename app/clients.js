@@ -221,26 +221,34 @@ const openWindow = (windowName, myWin, direction) => {
     // is mode: 'flat', cannot be minimized, maximized, collapsed or closed, has minimum height 400 and minimum width 600
     // create a context object inside the options and pass your window's id 'glue.windows.my().id'
     // TUTOR_TODO Chapter 4.1 - create an options object and define mode, relativeTo and relativeDirection properties
-    const options = {
-        mode: "html",
-        allowMinimize: false,
-        allowMaximize: false,
-        allowCollapse: false,
-        allowClose: false,
-        minHeight: 400,
-        minWidth: 600,
-        relativeTo: myWin.id,
-        relativeDirection: direction,
-        context: { parentWindowId: glue.windows.my().id }
-    };
+    // const options = {
+    //     mode: "html",
+    //     allowMinimize: false,
+    //     allowMaximize: false,
+    //     allowCollapse: false,
+    //     allowClose: false,
+    //     minHeight: 400,
+    //     minWidth: 600,
+    //     relativeTo: myWin.id,
+    //     relativeDirection: direction,
+    //     context: { parentWindowId: glue.windows.my().id }
+    // };
     // Use the Windows API to open a window with the provided windowName, options object and correct URL
-    glue.windows.open(
-        windowName,
-        window.location.href.replace("clients.html", "portfolio.html"),
-        options
-    );
+    // glue.windows.open(
+    //     windowName,
+    //     window.location.href.replace("clients.html", "portfolio.html"),
+    //     options
+    // );
+
     // TUTOR_TODO Chapter 5 - Modify split the current options object into two separate objects - context and windowSettings
     // use the Application Management API to open a portfolio instance
+    const windowSettings = {
+        mode: "html",
+        relativeTo: myWin.id,
+        relativeDirection: direction
+    };
+    const context = { parentWindowId: glue.windows.my().id };
+    glue.appManager.application("Portfolios").start(context, windowSettings);
 };
 
 const openTabWindow = (party, direction) => {
@@ -251,37 +259,64 @@ const openTabWindow = (party, direction) => {
     // Note: you only need those for the first tab - the one that creates the frame, subsequent tabs should not specify them.
     // Finally, create a window using the method you are already familiar with - glue.windows.open(). But don't forget to check if the client's portfolio is already opened.
     // If that is the case you should activate() the tab.
-    const tabFrameCreated = glue.windows
-        .list()
-        .find(wnd => wnd.name.includes("PortfolioTabs"));
-    const options = {
-        mode: "tab",
-        tabGroupId: "PortfolioTabs",
-        context: {
-            party: party,
-            winId: glue.windows.my().id
-        }
-    };
+    // const tabFrameCreated = glue.windows
+    //     .list()
+    //     .find(wnd => wnd.name.includes("PortfolioTabs"));
+    // const options = {
+    //     mode: "tab",
+    //     tabGroupId: "PortfolioTabs",
+    //     context: {
+    //         party: party,
+    //         winId: glue.windows.my().id
+    //     }
+    // };
 
-    if (!tabFrameCreated) {
-        options.relativeTo = glue.windows.my().id;
-        options.relativeDirection = direction;
-    }
+    // if (!tabFrameCreated) {
+    //     options.relativeTo = glue.windows.my().id;
+    //     options.relativeDirection = direction;
+    // }
+
+    // const clientTab = glue.windows.list().find(wnd => wnd.title === party.name);
+
+    // if (clientTab) {
+    //     clientTab.activate();
+    // } else {
+    //     glue.windows.open(
+    //         `PortfolioTabs_${party.pId}`,
+    //         window.location.href.replace("clients.html", "portfolio.html"),
+    //         options
+    //     );
+    // }
+
+    // TUTOR_TODO Chapter 5 - Modify split the current options object into two separate objects - context and windowSettings
+    // use the Application Management API to open a portfolio tab instance
+    // Note that using the Application Management API your window gets a default name, so you can't reuse the filter condition to check for open tabs
+    // so you need to get creative. What else is unique to the tabs that we can filter on?
 
     const clientTab = glue.windows.list().find(wnd => wnd.title === party.name);
 
     if (clientTab) {
         clientTab.activate();
     } else {
-        glue.windows.open(
-            `PortfolioTabs_${party.pId}`,
-            window.location.href.replace("clients.html", "portfolio.html"),
-            options
-        );
-    }
+        const context = {
+            party: party,
+            winId: glue.windows.my().id
+        };
+        const windowsSettings = {
+            mode: "tab",
+            tabGroupId: "PortfolioTabs"
+        };
+        const tabFrameCreated = glue.windows
+            .list()
+            .find(wnd => wnd.tabGroupId === windowsSettings.tabGroupId);
 
-    // TUTOR_TODO Chapter 5 - Modify split the current options object into two separate objects - context and windowSettings
-    // use the Application Management API to open a portfolio tab instance
-    // Note that using the Application Management API your window gets a default name, so you can't reuse the filter condition to check for open tabs
-    // so you need to get creative. What else is unique to the tabs that we can filter on?
+        if (!tabFrameCreated) {
+            windowsSettings.relativeTo = glue.windows.my().id;
+            windowsSettings.relativeDirection = direction;
+        }
+
+        glue.appManager
+            .application("Portfolios")
+            .start(context, windowsSettings);
+    }
 };
