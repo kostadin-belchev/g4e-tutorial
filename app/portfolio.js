@@ -82,14 +82,17 @@ const onInitializeApp = () => {
 const initInstrumentSearch = () => {
     // TUTOR_TODO Chapter 6
     // Create a search client using the supplied options
-    // const gssOptions = {
-    //     agm: glue.agm,
-    //     defaultQueryLimit: 500,
-    //     measureLatency: false,
-    //     searchTimeoutInMillis: 10000,
-    //     debugGss: false,
-    //     debug: false
-    // };
+    const gssOptions = {
+        agm: glue.agm,
+        defaultQueryLimit: 500,
+        measureLatency: false,
+        searchTimeoutInMillis: 10000,
+        debugGss: false,
+        debug: false
+    };
+    const searchClient = new gssClientSearch.create(gssOptions);
+    _query = searchClient.createQuery("Instrument");
+    _query.onData(results => displayResult(results));
     // Use the created search client to create a query for 'Instrument'
     // subscribe to the created query's onData event and call displayResult() passing in the received entities
 };
@@ -594,6 +597,7 @@ const search = event => {
     var searchValue = document.getElementById("ticker").value;
 
     // TUTOR_TODO Chapter 6 - Use the created query's search function and pass in the searchValue;
+    _query.search(searchValue);
 };
 
 const sendPortfolioAsEmailClicked = event => {
