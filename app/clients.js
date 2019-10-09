@@ -191,6 +191,13 @@ const trackTheme = () => {
     };
 
     // TUTOR_TODO Chapter 10 - subscribe for context changes and call setTheme with either 'bootstrap-dark.min.css' or 'bootstrap.min.css'
+    glue.contexts.subscribe("theme", theme => {
+        if (theme.name == "dark") {
+            setTheme("bootstrap-dark.min.css");
+            return;
+        }
+        setTheme("bootstrap.min.css");
+    });
 };
 
 const invokeAgMethod = client => {
