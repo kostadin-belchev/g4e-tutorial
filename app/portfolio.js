@@ -28,9 +28,9 @@ Glue(glueConfig)
         // TUTOR_TODO Chapter 8
         const glue4OfficeOptions = {
             glue: glue,
-            outlook: true
+            outlook: true,
             // TUTOR_TODO Chapter 9
-            // excel: true
+            excel: true
         };
 
         return Glue4Office(glue4OfficeOptions);
@@ -730,6 +730,12 @@ const sendPortfolioToExcelClicked = event => {
         };
 
         // TUTOR_TODO Chapter 9 - create a new spreadsheet passing the config object, then subscribe to the new sheet's onChanged event and call loadPortfolioFromExcel with the received data
+        g4o.excel
+            .openSheet(config)
+            .then(sheet => {
+                sheet.onChanged(newData => loadPortfolioFromExcel(newData));
+            })
+            .catch(console.error);
     };
 
     const portfolio = getCurrentPortfolio();
