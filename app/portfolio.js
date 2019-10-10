@@ -49,11 +49,46 @@ Glue(glueConfig)
 // Don't forget to catch any errors.
 
 const instrumentService = () => {
-    // TUTOR_TODO Chapter 12 - create sub-logger
-    // TUTOR_TODO Chapter 12 - create a metrics instance, a sub-system and set the state to GREEN
-    // TUTOR_TODO Chapter 12 - create an error count metric
-    // TUTOR_TODO Chapter 12 - create a composite error metric
-    // TUTOR_TODO Chapter 12 - create a TimeSpan metric
+    // TUTOR_TODO Chapter 12 Task 1 - create sub-logger and give it a name, e.g. "PortfolioWindow"
+    logger = glue.logger.subLogger("PortfolioWindow");
+    // TUTOR_TODO Chapter 12 Task 3 - create a metrics instance, a sub-system and set the state to GREEN and assign it to serviceMetricsSystem
+    serviceMetricsSystem = glue.metrics.subSystem(
+        "PortfolioSystem",
+        "Portfolio REST Service"
+    );
+    serviceMetricsSystem.setState(0, "OK");
+
+    // TUTOR_TODO Chapter 12 Task 4 - create an error count metric
+    serviceErrorCount = serviceMetricsSystem.countMetric(
+        {
+            name: "ajaxFailures",
+            description: "Number of times the AJAX requests have failed"
+        },
+        0
+    );
+    // TUTOR_TODO Chapter 12 Task 5 - create a composite error metric
+    const initialValue = {
+        clientId: "",
+        time: new Date(),
+        message: "",
+        stackTrace: ""
+    };
+
+    lastServiceError = serviceMetricsSystem.objectMetric(
+        {
+            name: "lastAjaxError",
+            description: "last recorded service error"
+        },
+        initialValue
+    );
+
+    // TUTOR_TODO Chapter 12 Task 6 - create a TimeSpan metric
+    const latencyOptions = {
+        name: "latency",
+        description: "request latency"
+    };
+
+    serviceLatency = serviceMetricsSystem.timespanMetric(latencyOptions);
 };
 
 const onInitializeApp = () => {
@@ -176,7 +211,8 @@ const loadPortfolio = portf => {
 
     const requestStart = Date.now();
 
-    // TUTOR_TODO Chapter 12 - start the latency metric
+    // TUTOR_TODO Chapter 12 Task 7 - start the latency metric
+    serviceLatency.start();
 
     const ajaxOptions = {
         method: "GET",
@@ -186,16 +222,19 @@ const loadPortfolio = portf => {
 
     $.ajax(ajaxOptions)
         .done(portfolio => {
-            // TUTOR_TODO Chapter 12 - stop the latency metric
+            // TUTOR_TODO Chapter 12 Task 8 - stop the latency metric
+            serviceLatency.stop();
 
             const elapsedMillis = Date.now() - requestStart;
 
             if (elapsedMillis >= 1000) {
                 const message = "Service at " + serviceUrl + " is lagging";
 
-                // TUTOR_TODO Chapter 12 - set system state to AMBER and pass the created message
+                // TUTOR_TODO Chapter 12 Task 10 - set system state to AMBER and pass the created message
+                serviceMetricsSystem.setState(50, message);
             } else {
-                // TUTOR_TODO Chapter 12 - set the system state to GREEN
+                // TUTOR_TODO Chapter 12 Task 11 - set the system state to GREEN
+                serviceMetricsSystem.setState(0, message);
             }
 
             let parsedPortfolio;
@@ -207,7 +246,8 @@ const loadPortfolio = portf => {
                 portfolioId: portf,
                 portfolio: parsedPortfolio
             };
-            // TUTOR_TODO Chapter 12 - log to the console using the logger and the provided logMessage
+            // TUTOR_TODO Chapter 12 Task 2 - log to the console using the logger and the provided logMessage
+            logger.info(logMessage);
 
             if (!parsedPortfolio.Portfolios.hasOwnProperty("Portfolio")) {
                 console.warn("The client has no portfolio");
@@ -219,9 +259,11 @@ const loadPortfolio = portf => {
             subscribeSymbolPrices();
         })
         .fail(function(jqXHR, textStatus) {
-            // TUTOR_TODO Chapter 12 - stop the latency metric
+            // TUTOR_TODO Chapter 12 Task 9 - stop the latency metric
+            serviceLatency.stop();
 
-            // TUTOR_TODO Chapter 12 - increment the error count
+            // TUTOR_TODO Chapter 12 Task 12 - increment the error count
+            serviceErrorCount.increment();
 
             const errorMessage =
                 "Service at " +
@@ -238,9 +280,11 @@ const loadPortfolio = portf => {
                 stackTrace: ""
             };
 
-            // TUTOR_TODO Chapter 12 - capture the error with the composite metric and use the provided errorOptions object
+            // TUTOR_TODO Chapter 12 Task 13 - capture the error with the composite metric and use the provided errorOptions object
+            lastServiceError.update(errorOptions);
 
-            // TUTOR_TODO Chapter 12 - set the system state to RED and pass the provided error message
+            // TUTOR_TODO Chapter 12 Task 14 - set the system state to RED and pass the provided error message
+            serviceMetricsSystem.setState(100, errorMessage);
         });
 };
 
