@@ -1,0 +1,132 @@
+[
+    {
+        "title": "Client Portfolio",
+        "type": "activity",
+        "name": "client_portfolio",
+        "icon": "http://localhost:22909/resources/icons/tick42.ico",
+        "hidden": false,
+        "details": {
+            "activityType": "ClientPortfolio",
+            "layout": {
+                "cellSize": 5,
+                "mode": "percents"
+            },
+            "owner": {
+                "height": 12,
+                "left": 1,
+                "name": "Client",
+                "top": 1,
+                "type": "Client",
+                "width": 5
+            },
+            "windows": [
+                {
+                    "height": 12,
+                    "left": 6,
+                    "name": "Portfolio",
+                    "top": 1,
+                    "type": "Portfolio",
+                    "width": 5
+                },
+                {
+                    "height": 12,
+                    "left": 11,
+                    "name": "ClientDetails",
+                    "top": 1,
+                    "type": "ClientDetails",
+                    "width": 6
+                }
+            ]
+        }
+    },
+    {
+        "activityTarget": {
+            "enabled": true,
+            "isIndependent": false,
+            "windowType": "Client"
+        },
+        "allowMultiple": true,
+        "caption": "A Demo showing clients.",
+        "details": {
+            "height": 400,
+            "left": 500,
+            "loader": {
+                "enabled": true
+            },
+            "minHeight": 400,
+            "mode": "html",
+            "name": "clients_window",
+            "top": 50,
+            "url": "http://localhost:22909/app/clients.html",
+            "width": 600
+        },
+        "disabled": false,
+        "hidden": true,
+        "icon": "http://localhost:22909/resources/icons/tick42.ico",
+        "name": "Client",
+        "title": "Client",
+        "type": "window"
+    },
+    {
+        "activityTarget": {
+            "enabled": true,
+            "isIndependent": false,
+            "windowType": "Portfolio"
+        },
+        "allowMultiple": true,
+        "caption": "A Demo showing clients portfolio.",
+        "details": {
+            "allowClose": false,
+            "allowCollapse": false,
+            "allowMaximize": false,
+            "allowMinimize": false,
+            "height": 400,
+            "left": 500,
+            "maxHeight": 450,
+            "maxWidth": 650,
+            "minHeight": 400,
+            "mode": "html",
+            "name": "portfolio_window",
+            "top": 50,
+            "url": "http://localhost:22909/app/portfolio.html",
+            "width": 600
+        },
+        "disabled": false,
+        "hidden": true,
+        "icon": "http://localhost:22909/resources/icons/tick42.ico",
+        "name": "Portfolio",
+        "title": "Portfolio",
+        "type": "window"
+    },
+    {
+        "activityTarget": {
+            "enabled": true,
+            "isIndependent": false,
+            "windowType": "ClientDetails"
+        },
+        "allowMultiple": true,
+        "caption": "A Demo showing client details.",
+        "details": {
+            "allowClose": false,
+            "allowCollapse": false,
+            "allowMaximize": false,
+            "allowMinimize": false,
+            "height": 400,
+            "left": 500,
+            "maxHeight": 450,
+            "maxWidth": 650,
+            "minHeight": 400,
+            "mode": "html",
+            "name": "client_details",
+            "top": 50,
+            "url": "http://localhost:22909/app/client-details-window.html",
+            "width": 600
+        },
+        "disabled": false,
+        "hidden": true,
+        "icon": "http://localhost:22909/resources/icons/tick42.ico",
+        "name": "ClientDetails",
+        "title": "Client Details",
+        "type": "window"
+    }
+]

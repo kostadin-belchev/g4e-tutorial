@@ -91,6 +91,9 @@ const setUpUi = () => {
     };
 
     // TUTOR_TODO Chapter 11 - check if you are in an activity and setup the frame buttons and events only if you are NOT
+    if (glue.activities.inActivity) {
+        return;
+    }
     setUpPortfolioFrameButton();
     setUpFrameButtonClick();
 };
@@ -105,7 +108,10 @@ const setupClients = () => {
 
         row.onclick = () => {
             // TUTOR_TODO Chapter 11 - check if you are in an activity and either update the activity context or open a tab window and invoke the agm method
-
+            if (glue.activities.inActivity) {
+                glue.activities.my.updateContext({ party: client });
+                return;
+            }
             // TUTOR_TODO Chapter 4.4 - pass the result of getWindowDirection as a second argument for openTabWindow
             const direction = getWindowDirection();
 

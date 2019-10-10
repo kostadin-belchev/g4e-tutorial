@@ -142,6 +142,15 @@ const setUpAppContent = () => {
 
 const registerAgmMethod = () => {
     // TUTOR_TODO Chapter 11 - register the AGM method only if you are not in activity, otherwise listen for activity context changes and call loadPortfolio
+    if (glue.activities.inActivity) {
+        glue.activities.my.onContextChanged(context => {
+            console.log("TCL: registerAgmMethod -> context", context);
+            if (context.party) {
+                loadPortfolio(context.party.pId);
+            }
+        });
+        return;
+    }
     // TUTOR_TODO Chapter 2.1 - register an AGM method 'SetParty', which accepts a composite argument 'party' with optional strings pId and ucn
     glue.agm.register(
         {
